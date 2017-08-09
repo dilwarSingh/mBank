@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.kosalgeek.asynctask.AsyncResponse;
 import com.kosalgeek.asynctask.PostResponseAsyncTask;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 import evacuees.com.mbank.DataSet.constants;
@@ -39,6 +40,7 @@ public class Register_Activity extends AppCompatActivity {
                 String eml = email.getText().toString();
                 String pwd = password.getText().toString();
                 String rpwd = repasword.getText().toString();
+
                 if(fn.isEmpty()){
                 fullname.setError("Name can't be empty");
                 }
@@ -54,6 +56,8 @@ public class Register_Activity extends AppCompatActivity {
                     data.put("phone", m);
                     data.put("email", eml);
                     data.put("password", pwd);
+                    data.put("time", getCurrentTime());
+                    data.put("date", getCurrentDate());
 
 
                     AsyncResponse asyncResponse = new AsyncResponse() {
@@ -103,4 +107,33 @@ public class Register_Activity extends AppCompatActivity {
         }, 300);
 
     }
-}}
+    public static String getCurrentTime() {
+        Calendar calendar = Calendar.getInstance();
+
+        int mm = calendar.get(Calendar.MINUTE);
+        int hh = calendar.get(Calendar.HOUR_OF_DAY);
+        String m = mm + "";
+        String h = hh + "";
+        if ((mm < 10)) {
+            m = "0" + mm;
+        }
+        if ((hh < 10)) {
+            h = "0" + hh;
+        }
+        String t = h + ":" + m;
+        return t;
+    }
+    public static String getCurrentDate() {
+        Calendar calendar = Calendar.getInstance();
+        String m = (calendar.get(Calendar.MONTH) + 1) + "";
+        String date = calendar.get(Calendar.DAY_OF_MONTH) + "";
+        if (m.length() == 1) {
+            m = "0" + m;
+        }
+        if (date.length() == 1) {
+            date = "0" + date;
+        }
+
+        return (date + "/" + m + "/" + calendar.get(Calendar.YEAR));
+    }
+}
