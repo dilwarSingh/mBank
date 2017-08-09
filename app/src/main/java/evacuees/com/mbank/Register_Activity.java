@@ -91,6 +91,7 @@ public class Register_Activity extends AppCompatActivity {
                     data.put("time", getCurrentTime());
                     data.put("date", getCurrentDate());
                     data.put("account_no", account_no + "");
+                    data.put("account_balance", "00.00");
 
 
                     AsyncResponse asyncResponse = new AsyncResponse() {
