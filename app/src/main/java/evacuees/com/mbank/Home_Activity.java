@@ -26,7 +26,7 @@ public class Home_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         listView = (ListView) findViewById(android.R.id.list);
 
-        addMoney = (MyButton) findViewById(R.id.addMoney);
+       //  addMoney = (MyButton) findViewById(R.id.addMoney);
         ArrayList<String> arrayList = new ArrayList<>();
 
         for (int i = 0; i < 50; i++) {
