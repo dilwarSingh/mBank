@@ -1,10 +1,9 @@
 package evacuees.com.mbank;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,10 +14,42 @@ import com.kosalgeek.asynctask.PostResponseAsyncTask;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Random;
 
 import evacuees.com.mbank.DataSet.constants;
 
 public class Register_Activity extends AppCompatActivity {
+
+    public static String getCurrentTime() {
+        Calendar calendar = Calendar.getInstance();
+
+        int mm = calendar.get(Calendar.MINUTE);
+        int hh = calendar.get(Calendar.HOUR_OF_DAY);
+        String m = mm + "";
+        String h = hh + "";
+        if ((mm < 10)) {
+            m = "0" + mm;
+        }
+        if ((hh < 10)) {
+            h = "0" + hh;
+        }
+        String t = h + ":" + m;
+        return t;
+    }
+
+    public static String getCurrentDate() {
+        Calendar calendar = Calendar.getInstance();
+        String m = (calendar.get(Calendar.MONTH) + 1) + "";
+        String date = calendar.get(Calendar.DAY_OF_MONTH) + "";
+        if (m.length() == 1) {
+            m = "0" + m;
+        }
+        if (date.length() == 1) {
+            date = "0" + date;
+        }
+
+        return (date + "/" + m + "/" + calendar.get(Calendar.YEAR));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,16 +72,17 @@ public class Register_Activity extends AppCompatActivity {
                 String pwd = password.getText().toString();
                 String rpwd = repasword.getText().toString();
 
-                if(fn.isEmpty()){
-                fullname.setError("Name can't be empty");
-                }
-                else if(m.isEmpty()){
+                Random random = new Random(100000);
+                long account_no = Math.abs(random.nextLong());
+
+                if (fn.isEmpty()) {
+                    fullname.setError("Name can't be empty");
+                } else if (m.isEmpty()) {
                     mobile.setError("Mobile number can't be empty");
-                }
-                else if(eml.isEmpty()){
+                } else if (eml.isEmpty()) {
                     email.setError("Email can't be empty");
                 }
-                if ((!pwd.isEmpty())||pwd.equals(rpwd)) {
+                if ((!pwd.isEmpty()) || pwd.equals(rpwd)) {
                     HashMap<String, String> data = new HashMap<String, String>();
                     data.put("name", fn);
                     data.put("phone", m);
@@ -58,7 +90,7 @@ public class Register_Activity extends AppCompatActivity {
                     data.put("password", pwd);
                     data.put("time", getCurrentTime());
                     data.put("date", getCurrentDate());
-
+                    data.put("account_no", account_no + "");
 
 
                     AsyncResponse asyncResponse = new AsyncResponse() {
@@ -107,34 +139,5 @@ public class Register_Activity extends AppCompatActivity {
             }
         }, 300);
 
-    }
-    public static String getCurrentTime() {
-        Calendar calendar = Calendar.getInstance();
-
-        int mm = calendar.get(Calendar.MINUTE);
-        int hh = calendar.get(Calendar.HOUR_OF_DAY);
-        String m = mm + "";
-        String h = hh + "";
-        if ((mm < 10)) {
-            m = "0" + mm;
-        }
-        if ((hh < 10)) {
-            h = "0" + hh;
-        }
-        String t = h + ":" + m;
-        return t;
-    }
-    public static String getCurrentDate() {
-        Calendar calendar = Calendar.getInstance();
-        String m = (calendar.get(Calendar.MONTH) + 1) + "";
-        String date = calendar.get(Calendar.DAY_OF_MONTH) + "";
-        if (m.length() == 1) {
-            m = "0" + m;
-        }
-        if (date.length() == 1) {
-            date = "0" + date;
-        }
-
-        return (date + "/" + m + "/" + calendar.get(Calendar.YEAR));
     }
 }
