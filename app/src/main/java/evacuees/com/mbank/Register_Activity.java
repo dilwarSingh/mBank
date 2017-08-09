@@ -60,6 +60,7 @@ public class Register_Activity extends AppCompatActivity {
                     data.put("date", getCurrentDate());
 
 
+
                     AsyncResponse asyncResponse = new AsyncResponse() {
                         @Override
                         public void processFinish(String s) {
