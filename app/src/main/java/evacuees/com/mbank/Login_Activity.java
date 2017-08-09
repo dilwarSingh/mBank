@@ -86,7 +86,7 @@ public class Login_Activity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please Check Internet Connection ", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
-                    if (s.equals("Login Access")) {
+                    if (s.equals("Success")) {
 
                         Intent intent = new Intent(Login_Activity.this, Home_Activity.class);
                         startActivity(intent);

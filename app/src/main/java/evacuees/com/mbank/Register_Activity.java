@@ -81,8 +81,7 @@ public class Register_Activity extends AppCompatActivity {
                     mobile.setError("Mobile number can't be empty");
                 } else if (eml.isEmpty()) {
                     email.setError("Email can't be empty");
-                }
-                if ((!pwd.isEmpty()) || pwd.equals(rpwd)) {
+                } else if ((!pwd.isEmpty()) || pwd.equals(rpwd)) {
                     HashMap<String, String> data = new HashMap<String, String>();
                     data.put("name", fn);
                     data.put("phone", m);
