@@ -9,4 +9,6 @@
     <string name="register_with_mbank">Register With mBank</string>
     <string name="login_to_mbank">Login to mBank</string>
     <string name="mbank_password">mBank Password</string>
+    <string name="login">Login</string>
+    <string name="or">OR</string>
 </resources>
