@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kosalgeek.asynctask.AsyncResponse;
 import com.kosalgeek.asynctask.PostResponseAsyncTask;
@@ -81,11 +82,22 @@ public class Login_Activity extends AppCompatActivity {
         AsyncResponse response = new AsyncResponse() {
             @Override
             public void processFinish(String s) {
+                if (s.isEmpty() || s.equals("") || s.equals(null)) {
+                    Toast.makeText(getApplicationContext(), "Please Check Internet Connection ", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+                    if (s.equals("Login Access")) {
 
+                        Intent intent = new Intent(Login_Activity.this, Home_Activity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                }
             }
         };
-        PostResponseAsyncTask task = new PostResponseAsyncTask();
-        task.execute(constants.Api_Location+"login.php");
+        PostResponseAsyncTask task = new PostResponseAsyncTask(Login_Activity.this, map, "Logging you in...", response);
+        task.execute(constants.Api_Location + "login.php");
 
     }
 }
