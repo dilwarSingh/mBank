@@ -1,10 +1,9 @@
 package evacuees.com.mbank;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +13,7 @@ import com.kosalgeek.asynctask.AsyncResponse;
 import com.kosalgeek.asynctask.PostResponseAsyncTask;
 
 import java.util.HashMap;
+import java.util.Random;
 
 import evacuees.com.mbank.DataSet.constants;
 
@@ -39,21 +39,26 @@ public class Register_Activity extends AppCompatActivity {
                 String eml = email.getText().toString();
                 String pwd = password.getText().toString();
                 String rpwd = repasword.getText().toString();
-                if(fn.isEmpty()){
-                fullname.setError("Name can't be empty");
-                }
-                else if(m.isEmpty()){
+
+                Random r = new Random(100000);
+
+                long account_no = Math.abs(r.nextLong());
+
+
+                if (fn.isEmpty()) {
+                    fullname.setError("Name can't be empty");
+                } else if (m.isEmpty()) {
                     mobile.setError("Mobile number can't be empty");
-                }
-                else if(eml.isEmpty()){
+                } else if (eml.isEmpty()) {
                     email.setError("Email can't be empty");
                 }
-                if ((!pwd.isEmpty())||pwd.equals(rpwd)) {
+                if ((!pwd.isEmpty()) || pwd.equals(rpwd)) {
                     HashMap<String, String> data = new HashMap<String, String>();
                     data.put("name", fn);
                     data.put("phone", m);
                     data.put("email", eml);
                     data.put("password", pwd);
+                    data.put("account_no", account_no + "");
 
 
                     AsyncResponse asyncResponse = new AsyncResponse() {
