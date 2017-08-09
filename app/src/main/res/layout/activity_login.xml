@@ -33,7 +33,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:passwordToggleEnabled="true">
+      >
 
         <EditText
             android:id="@+id/email"
@@ -49,6 +49,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
+        app:passwordToggleEnabled="true"
         android:layout_marginRight="0dp"
         android:layout_marginTop="16dp"
         app:layout_constraintLeft_toLeftOf="@+id/textInputLayout6"
@@ -60,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/mbank_password"
-            android:inputType="textPassword|textVisiblePassword" />
+            android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
