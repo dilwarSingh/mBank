@@ -3,6 +3,7 @@ package evacuees.com.mbank;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -20,6 +21,7 @@ import evacuees.com.mbank.DataSet.constants;
 public class Login_Activity extends AppCompatActivity {
     TextView register, login;
     EditText Email, Password;
+    TextInputLayout passwordTil, emailTil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,8 @@ public class Login_Activity extends AppCompatActivity {
         login = (TextView) findViewById(R.id.login);
         Email = (EditText) findViewById(R.id.email);
         Password = (EditText) findViewById(R.id.password);
-
+        passwordTil = (TextInputLayout) findViewById(R.id.passwordTil);
+        emailTil = (TextInputLayout) findViewById(R.id.emailTil);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +64,10 @@ public class Login_Activity extends AppCompatActivity {
 
     private boolean checker() {
         if (TextUtils.isEmpty(Email.getText()) || Email.getText().length() < 7) {
-            Email.setError("Invalid Email");
+            emailTil.setError("Invalid Email");
             return false;
         } else if (TextUtils.isEmpty(Password.getText()) || Password.getText().length() < 5) {
-            Password.setError("Invalid Password");
+            passwordTil.setError("Invalid Password");
             return false;
         }
         return true;
@@ -72,7 +75,7 @@ public class Login_Activity extends AppCompatActivity {
     }
 
     private void LoginHit() {
-        String email = Email.getText().toString().trim();
+        final String email = Email.getText().toString().trim();
         String password = Password.getText().toString().trim();
 
         HashMap<String, String> map = new HashMap<>();
@@ -87,12 +90,11 @@ public class Login_Activity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
                     if (s.equals("Success")) {
-
+                        constants.EMAIL = email;
                         Intent intent = new Intent(Login_Activity.this, Home_Activity.class);
                         startActivity(intent);
                         finish();
                     }
-
                 }
             }
         };
