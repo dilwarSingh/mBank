@@ -94,9 +94,9 @@ public class Profile_Activity extends AppCompatActivity {
                 }
             };
 
-            PostResponseAsyncTask task = new PostResponseAsyncTask(Profile_Activity.this, data, "Registering Please Wait......", asyncResponse);
+            PostResponseAsyncTask task = new PostResponseAsyncTask(Profile_Activity.this, data, "Updating Please Wait......", asyncResponse);
 
-            task.execute(constants.Api_Location + "");
+            task.execute(constants.Api_Location + "updateProfile.php");
 
 
         }
@@ -136,7 +136,7 @@ public class Profile_Activity extends AppCompatActivity {
         };
 
         PostResponseAsyncTask task = new PostResponseAsyncTask(Profile_Activity.this, map, "Loading Paper...", response);
-        task.execute(constants.Api_Location + "");
+        task.execute(constants.Api_Location + "getAccountInfo.php");
 
 
     }
