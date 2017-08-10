@@ -63,6 +63,22 @@ public class Home_Activity extends AppCompatActivity {
 
             }
         });
+        addMoney.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home_Activity.this, AddMoney_Activity.class);
+                startActivity(intent);
+
+            }
+        });
+        sendMoney.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home_Activity.this, sendMoney_Activity.class);
+                startActivity(intent);
+
+            }
+        });
 
     }
 
