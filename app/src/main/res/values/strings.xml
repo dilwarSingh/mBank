@@ -13,4 +13,7 @@
     <string name="or">OR</string>
     <string name="add_money">Add Money</string>
     <string name="account_balance">Account Balance</string>
+    <string name="enter_amount">Enter Amount</string>
+    <string name="reciver_s_account_no">Reciver\'s Account No.</string>
+    <string name="send_money">Send Money</string>
 </resources>

@@ -33,7 +33,9 @@ public class Profile_Activity extends AppCompatActivity {
     RadioGroup gender;
     RadioButton male, female, selectedradiobutton;
     Calendar calendar = Calendar.getInstance();
-    String gendr = "None";
+    String gendr = "none";
+    String dender = "none";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +109,8 @@ public class Profile_Activity extends AppCompatActivity {
         HashMap<String, String> map = new HashMap<>();
         map.put("email", constants.EMAIL);
 
+        String dender = "none";
+
         AsyncResponse response = new AsyncResponse() {
             @Override
             public void processFinish(String s) {
@@ -123,8 +127,13 @@ public class Profile_Activity extends AppCompatActivity {
                             name.setText(object.getString("name"));
                             phoneno.setText(object.getString("phone"));
                             email.setText(object.getString("email"));
-
-
+                            dob.setText(object.getString("dob"));
+                            dender = (object.getString("gender"));
+                        }
+                        if (dender.equals("male")) {
+                            male.setChecked(true);
+                        } else if (dender.equals("female")) {
+                            female.setChecked(true);
                         }
 
 
@@ -135,7 +144,7 @@ public class Profile_Activity extends AppCompatActivity {
             }
         };
 
-        PostResponseAsyncTask task = new PostResponseAsyncTask(Profile_Activity.this, map, "Loading Paper...", response);
+        PostResponseAsyncTask task = new PostResponseAsyncTask(Profile_Activity.this, map, "Loading Profile...", response);
         task.execute(constants.Api_Location + "getAccountInfo.php");
 
 

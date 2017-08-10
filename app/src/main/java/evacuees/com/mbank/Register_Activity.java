@@ -46,7 +46,7 @@ public class Register_Activity extends AppCompatActivity {
                 Random random = new Random();
                 long min = 100000000L;
                 long max = 1000000000000L;
-                long account_no = min + ((long) (random.nextDouble() * (max - min)));
+                final long account_no = min + ((long) (random.nextDouble() * (max - min)));
 
 
                 if (fn.isEmpty()) {
@@ -62,6 +62,7 @@ public class Register_Activity extends AppCompatActivity {
                 } else {
 
                     HashMap<String, String> data = new HashMap<String, String>();
+
                     data.put("name", fn);
                     data.put("phone", m);
                     data.put("email", eml);
@@ -74,7 +75,6 @@ public class Register_Activity extends AppCompatActivity {
                     data.put("gender", "none");
 
 
-
                     AsyncResponse asyncResponse = new AsyncResponse() {
                         @Override
                         public void processFinish(String s) {
@@ -84,6 +84,8 @@ public class Register_Activity extends AppCompatActivity {
                             } else {
                                 Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
                                 if (s.equals("Successfully registered")) {
+
+
 
                                     fullname.setText("");
                                     mobile.setText("");
@@ -107,6 +109,8 @@ public class Register_Activity extends AppCompatActivity {
 
         });
     }
+
+
 
     @Override
     public void onBackPressed() {
