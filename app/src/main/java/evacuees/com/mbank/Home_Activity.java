@@ -45,6 +45,7 @@ public class Home_Activity extends AppCompatActivity {
         tanschist();
         init();
 
+
         addMoney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
