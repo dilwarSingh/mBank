@@ -33,6 +33,7 @@ public class Register_Activity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         repasword = (EditText) findViewById(R.id.rePassword);
         register = (Button) findViewById(R.id.register);
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,8 +43,11 @@ public class Register_Activity extends AppCompatActivity {
                 String pwd = password.getText().toString();
                 String rpwd = repasword.getText().toString();
 
-                Random random = new Random(100000);
-                long account_no = Math.abs(random.nextLong());
+                Random random = new Random();
+                long min = 100000000L;
+                long max = 1000000000000L;
+                long account_no = min + ((long) (random.nextDouble() * (max - min)));
+
 
                 if (fn.isEmpty()) {
                     fullname.setError("Name can't be empty");
@@ -51,8 +55,12 @@ public class Register_Activity extends AppCompatActivity {
                     mobile.setError("Mobile number can't be empty");
                 } else if (eml.isEmpty()) {
                     email.setError("Email can't be empty");
-                }
-                if ((!pwd.isEmpty()) || pwd.equals(rpwd)) {
+                } else if (pwd.isEmpty()) {
+                    password.setError("Password can't be Empty");
+                } else if (!pwd.equals(rpwd)) {
+                    repasword.setError("Password didn't match");
+                } else {
+
                     HashMap<String, String> data = new HashMap<String, String>();
                     data.put("name", fn);
                     data.put("phone", m);
@@ -89,8 +97,8 @@ public class Register_Activity extends AppCompatActivity {
                     PostResponseAsyncTask task = new PostResponseAsyncTask(Register_Activity.this, data, "Registering Please Wait......", asyncResponse);
 
                     task.execute(constants.Api_Location + "register.php");
-                } else {
-                    password.setError("Password didn't match");
+
+
                 }
             }
 
@@ -111,7 +119,8 @@ public class Register_Activity extends AppCompatActivity {
         }, 300);
 
     }
-    public static String getCurrentTime() {
+
+    public String getCurrentTime() {
         Calendar calendar = Calendar.getInstance();
 
         int mm = calendar.get(Calendar.MINUTE);
@@ -128,7 +137,7 @@ public class Register_Activity extends AppCompatActivity {
         return t;
     }
 
-    public static String getCurrentDate() {
+    public String getCurrentDate() {
         Calendar calendar = Calendar.getInstance();
         String m = (calendar.get(Calendar.MONTH) + 1) + "";
         String date = calendar.get(Calendar.DAY_OF_MONTH) + "";
