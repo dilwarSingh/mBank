@@ -15,6 +15,8 @@ import com.kosalgeek.asynctask.AsyncResponse;
 import com.kosalgeek.asynctask.PostResponseAsyncTask;
 
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import evacuees.com.mbank.DataSet.constants;
 
@@ -22,6 +24,9 @@ public class Login_Activity extends AppCompatActivity {
     TextView register, login;
     EditText Email, Password;
     TextInputLayout passwordTil, emailTil;
+    String emailPattern = "^[a-zA-Z][\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+    Pattern patternE;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +39,7 @@ public class Login_Activity extends AppCompatActivity {
         Password = (EditText) findViewById(R.id.password);
         passwordTil = (TextInputLayout) findViewById(R.id.passwordTil);
         emailTil = (TextInputLayout) findViewById(R.id.emailTil);
-
+        patternE = Pattern.compile(emailPattern);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,11 +68,12 @@ public class Login_Activity extends AppCompatActivity {
     }
 
     private boolean checker() {
-        if (TextUtils.isEmpty(Email.getText()) || Email.getText().length() < 7) {
+        Matcher matcherE = patternE.matcher(Email.getText().toString());
+        if ((!matcherE.find())) {
             emailTil.setError("Invalid Email");
             return false;
-        } else if (TextUtils.isEmpty(Password.getText()) || Password.getText().length() < 5) {
-            passwordTil.setError("Invalid Password");
+        } else if (Password.getText().length() < 6) {
+            passwordTil.setError("Password is wrong");
             return false;
         }
         return true;
