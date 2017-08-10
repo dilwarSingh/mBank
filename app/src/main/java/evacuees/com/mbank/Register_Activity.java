@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,6 +64,7 @@ public class Register_Activity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         repasword = (EditText) findViewById(R.id.rePassword);
         register = (Button) findViewById(R.id.register);
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,8 +74,12 @@ public class Register_Activity extends AppCompatActivity {
                 String pwd = password.getText().toString();
                 String rpwd = repasword.getText().toString();
 
-                Random random = new Random(100000);
-                long account_no = Math.abs(random.nextLong());
+                Random random = new Random();
+                long min = 100000000L;
+                long max = 1000000000000L;
+                long account_no = min + ((long) (random.nextDouble() * (max - min)));
+                Log.d("accNo", account_no + "");
+
 
                 if (fn.isEmpty()) {
                     fullname.setError("Name can't be empty");
