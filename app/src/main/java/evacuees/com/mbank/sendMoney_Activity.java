@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,7 +51,7 @@ public class sendMoney_Activity extends AppCompatActivity {
 
                 final float Money = Float.parseFloat(money.getText().toString());
 
-                if (Money < Float.parseFloat(BALANCE)) {
+                if (Money > Float.parseFloat(BALANCE)) {
                     amount.setError("Insufficient Balance");
                 } else {
                     HashMap<String, String> map = new HashMap<>();
@@ -74,6 +75,7 @@ public class sendMoney_Activity extends AppCompatActivity {
 
                                     }
 
+                                    System.out.println("/////////////////////////////"+Money+"9999999999999999999999999999999");
 
                                     sendMoney1(Money);
 
@@ -97,15 +99,19 @@ public class sendMoney_Activity extends AppCompatActivity {
     public void sendMoney1(Float Money) {
         HashMap<String, String> map = new HashMap<String, String>();
 
+        Log.d("money", Money + "iacb");
+        System.out.println("/////////////////////////////"+Money+"9999999999999999999999999999999");
+
         map.put("Saccount", ACCOUNT);
         map.put("Raccount", ReciverNo.getText().toString());
-        map.put("Saccount", "_" + ACCOUNT);
-        map.put("Raccount", "_" + ReciverNo.getText().toString());
+        map.put("USaccount", "_" + ACCOUNT);
+        map.put("URaccount", "_" + ReciverNo.getText().toString());
         map.put("mins", (Float.parseFloat(BALANCE) - Money) + "");
         map.put("maxs", (Float.parseFloat(reciversAccountBalance) - Money) + "");
-        map.put("amount", Money + "");
+        map.put("Money", Money + "");
         map.put("date", getCurrentDate());
         map.put("time", getCurrentTime());
+        System.out.println("/////////////////////////////"+Money+"9999999999999999999999999999999");
 
 
         AsyncResponse response = new AsyncResponse() {
@@ -118,8 +124,11 @@ public class sendMoney_Activity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
                     if (s.equals("Successfully Send")) {
 
-                        Intent intent = new Intent(sendMoney_Activity.this, Home_Activity.class);
-                        startActivity(intent);
+                        Intent i = new Intent(sendMoney_Activity.this, Home_Activity.class);
+
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+                        finish();
                     }
                 }
             }

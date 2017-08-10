@@ -1,6 +1,7 @@
 package evacuees.com.mbank.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,17 +54,30 @@ public class TransactionsCustomListAdaptor extends BaseAdapter {
             myViewHolder = (MyViewHolder) convertView.getTag();
         }
         TransactionsListData currentListData = (TransactionsListData) getItem(position);
-        myViewHolder.sendto.setText(currentListData.getSendto());
         myViewHolder.date.setText(currentListData.getDate());
         myViewHolder.time.setText(currentListData.getTime());
-        myViewHolder.amount.setText(currentListData.getAmount());
+        myViewHolder.amount.setText("Rs. " + currentListData.getAmount());
 
-        if (currentListData.getImg() == "credit") {
+
+        if (currentListData.getStatus().equals("credit")) {
             myViewHolder.status.setText("C");
-        } else if (currentListData.getImg() == "debit") {
-            myViewHolder.status.setText("D");
-        } else {
+            myViewHolder.sendto.setText("From: " + currentListData.getSendto());
+            myViewHolder.amount.setText("+Rs. " + currentListData.getAmount());
+
+
+        } else if (currentListData.getStatus().equals("added")) {
             myViewHolder.status.setText("A");
+            myViewHolder.sendto.setText("From: " + currentListData.getSendto());
+            myViewHolder.amount.setText("+Rs. " + currentListData.getAmount());
+
+
+        } else {
+
+            myViewHolder.status.setText("D");
+            myViewHolder.sendto.setText("To: " + currentListData.getSendto());
+            myViewHolder.amount.setText("-Rs. " + currentListData.getAmount());
+
+
         }
 
 

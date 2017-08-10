@@ -56,8 +56,11 @@ public class AddMoney_Activity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
                             if (s.equals("Successfully Added")) {
 
-                                Intent intent = new Intent(AddMoney_Activity.this, Home_Activity.class);
-                                startActivity(intent);
+                                Intent i = new Intent(AddMoney_Activity.this, Home_Activity.class);
+
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(i);
+                                finish();
                             }
 
                         }

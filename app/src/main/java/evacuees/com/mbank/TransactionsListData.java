@@ -6,14 +6,14 @@ package evacuees.com.mbank;
 
 public class TransactionsListData {
     String Sendto, date, time, amount;
-    String img;
+    String status;
 
-    public TransactionsListData(String sendto, String date, String time, String amount, String img) {
+    public TransactionsListData(String sendto, String date, String time, String amount, String status) {
         Sendto = sendto;
         this.date = date;
         this.time = time;
         this.amount = amount;
-        this.img = img;
+        this.status = status;
     }
 
     public String getSendto() {
@@ -48,11 +48,11 @@ public class TransactionsListData {
         this.amount = amount;
     }
 
-    public String getImg() {
-        return img;
+    public String getStatus() {
+        return status;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

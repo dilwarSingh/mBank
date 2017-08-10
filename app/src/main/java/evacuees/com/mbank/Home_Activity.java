@@ -3,6 +3,9 @@ package evacuees.com.mbank;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -23,9 +26,7 @@ import java.util.List;
 import evacuees.com.mbank.Adapters.TransactionsCustomListAdaptor;
 import evacuees.com.mbank.DataSet.constants;
 
-import static evacuees.com.mbank.DataSet.constants.ACCOUNT;
 import static evacuees.com.mbank.DataSet.constants.Api_Location;
-import static evacuees.com.mbank.DataSet.constants.BALANCE;
 
 
 public class Home_Activity extends AppCompatActivity {
@@ -45,7 +46,6 @@ public class Home_Activity extends AppCompatActivity {
 
         bindViews();
         init();
-        tanschist();
 
 
         addMoney.setOnClickListener(new View.OnClickListener() {
@@ -82,11 +82,34 @@ public class Home_Activity extends AppCompatActivity {
 
     }
 
-    private void tanschist() {
-        final ArrayList listt = new ArrayList<>();
-        HashMap<String, String> map = new HashMap<>();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-        map.put("account_no", no);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        switch (item.getItemId()) {
+            case R.id.Logout:
+                Intent i = new Intent(Home_Activity.this, Login_Activity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
+                finish();
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void tanschist(String fgh) {
+        final ArrayList<TransactionsListData> listt = new ArrayList<>();
+        HashMap<String, String> map = new HashMap<>();
+        String tab = "_" + fgh;
+        Log.d("tab", tab);
+        map.put("Uaccount", tab);
 
         final List<String> sendtoo = new ArrayList<>();
         final List<String> date = new ArrayList<>();
@@ -100,6 +123,8 @@ public class Home_Activity extends AppCompatActivity {
             public void processFinish(String jsonData) {
 
                 try {
+                    Log.d("sdfgh", jsonData);
+
                     JSONObject jsonObject = new JSONObject(jsonData);
                     JSONArray jsonArray = jsonObject.getJSONArray("result");
 
@@ -120,7 +145,7 @@ public class Home_Activity extends AppCompatActivity {
 
 
                 } catch (Exception e) {
-                    Toast.makeText(Home_Activity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(Home_Activity.this,   e.getMessage(), Toast.LENGTH_LONG).show();
 
 
                 }
@@ -131,7 +156,7 @@ public class Home_Activity extends AppCompatActivity {
 
 
         PostResponseAsyncTask task = new PostResponseAsyncTask(Home_Activity.this, map, true, response);
-        task.execute(constants.Api_Location + "");
+        task.execute(constants.Api_Location + "getTransactionHistory.php");
 
     }
 
@@ -166,6 +191,7 @@ public class Home_Activity extends AppCompatActivity {
 
                     AccountNo.setText("A/C: " + no);
                     AccountBal.setText("Rs. " + bal);
+                    tanschist(no);
 
 
                 } catch (Exception e) {
