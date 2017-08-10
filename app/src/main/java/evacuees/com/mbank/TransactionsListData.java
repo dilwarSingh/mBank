@@ -1,16 +1,14 @@
 package evacuees.com.mbank;
 
-import android.widget.ImageView;
-
 /**
  * Created by Deepak on 10-Aug-17.
  */
 
 public class TransactionsListData {
-    String Sendto,date,time,amount;
-    ImageView img;
+    String Sendto, date, time, amount;
+    String img;
 
-    public TransactionsListData(String sendto, String date, String time, String amount, ImageView img) {
+    public TransactionsListData(String sendto, String date, String time, String amount, String img) {
         Sendto = sendto;
         this.date = date;
         this.time = time;
@@ -50,11 +48,11 @@ public class TransactionsListData {
         this.amount = amount;
     }
 
-    public ImageView getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(ImageView img) {
+    public void setImg(String img) {
         this.img = img;
     }
 }

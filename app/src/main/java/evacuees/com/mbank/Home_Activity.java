@@ -22,7 +22,6 @@ import java.util.List;
 
 import evacuees.com.mbank.Adapters.TransactionsCustomListAdaptor;
 import evacuees.com.mbank.DataSet.constants;
-import evacuees.com.mbank.popups.addMoneyPopup;
 
 import static evacuees.com.mbank.DataSet.constants.Api_Location;
 
@@ -34,6 +33,7 @@ public class Home_Activity extends AppCompatActivity {
     TextView AccountNo, AccountBal;
     Button addMoney, sendMoney;
     ListView tracHis;
+    String no = "00", bal = "00.00";
 
 
     @Override
@@ -42,8 +42,8 @@ public class Home_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         bindViews();
-        tanschist();
         init();
+        tanschist();
 
 
         addMoney.setOnClickListener(new View.OnClickListener() {
@@ -72,9 +72,9 @@ public class Home_Activity extends AppCompatActivity {
 
         final List<String> sendtoo = new ArrayList<>();
         final List<String> date = new ArrayList<>();
-        final List<String> time= new ArrayList<>();
+        final List<String> time = new ArrayList<>();
         final List<String> amount = new ArrayList<>();
-
+        final List<String> status = new ArrayList<>();
 
 
         AsyncResponse response = new AsyncResponse() {
@@ -91,10 +91,11 @@ public class Home_Activity extends AppCompatActivity {
                         date.add(object.getString("date"));
                         time.add(object.getString("time"));
                         amount.add(object.getString("money"));
+                        status.add(object.getString("status"));
 
                     }
                     for (int i = 0; i < sendtoo.size(); i++) {
-                        TransactionsListData ld = new TransactionsListData(sendtoo.get(i), date.get(i), time.get(i), amount.get(i), img.get(i));
+                        TransactionsListData ld = new TransactionsListData(sendtoo.get(i), date.get(i), time.get(i), amount.get(i), status.get(i));
                         listt.add(ld);
                     }
                     tracHis.setAdapter(new TransactionsCustomListAdaptor(Home_Activity.this, listt));
@@ -118,8 +119,6 @@ public class Home_Activity extends AppCompatActivity {
 
     private void addMoneyClicked() {
 
-        addMoneyPopup popup = new addMoneyPopup(Home_Activity.this);
-        popup.show();
 
     }
 
@@ -137,11 +136,11 @@ public class Home_Activity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(jsonData);
                     JSONArray jsonArray = jsonObject.getJSONArray("result");
 
-                    String no = "00", bal = "00.00";
+
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
                         bal = "Rs. " + (object.getString("account_balance"));
-                        no =  "A/C: " +(object.getString("account_no"));
+                        no = "A/C: " + (object.getString("account_no"));
                     }
 
                     AccountNo.setText(no);

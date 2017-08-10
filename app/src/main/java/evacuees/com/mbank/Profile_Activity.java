@@ -109,7 +109,7 @@ public class Profile_Activity extends AppCompatActivity {
         HashMap<String, String> map = new HashMap<>();
         map.put("email", constants.EMAIL);
 
-        String dender = "none";
+        final String[] dender = {"none"};
 
         AsyncResponse response = new AsyncResponse() {
             @Override
@@ -128,11 +128,11 @@ public class Profile_Activity extends AppCompatActivity {
                             phoneno.setText(object.getString("phone"));
                             email.setText(object.getString("email"));
                             dob.setText(object.getString("dob"));
-                            dender = (object.getString("gender"));
+                            dender[0] = (object.getString("gender"));
                         }
-                        if (dender.equals("male")) {
+                        if (dender[0].equals("male")) {
                             male.setChecked(true);
-                        } else if (dender.equals("female")) {
+                        } else if (dender[0].equals("female")) {
                             female.setChecked(true);
                         }
 
