@@ -16,8 +16,11 @@ import com.kosalgeek.asynctask.PostResponseAsyncTask;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import evacuees.com.mbank.Adapters.TransactionsCustomListAdaptor;
 import evacuees.com.mbank.DataSet.constants;
 import evacuees.com.mbank.popups.addMoneyPopup;
 
@@ -39,8 +42,9 @@ public class Home_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         bindViews();
-
+        tanschist();
         init();
+
 
         addMoney.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +61,58 @@ public class Home_Activity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void tanschist() {
+        final ArrayList listt = new ArrayList<>();
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("account_no", no);
+
+        final List<String> sendtoo = new ArrayList<>();
+        final List<String> date = new ArrayList<>();
+        final List<String> time= new ArrayList<>();
+        final List<String> amount = new ArrayList<>();
+
+
+
+        AsyncResponse response = new AsyncResponse() {
+            @Override
+            public void processFinish(String jsonData) {
+
+                try {
+                    JSONObject jsonObject = new JSONObject(jsonData);
+                    JSONArray jsonArray = jsonObject.getJSONArray("result");
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject object = jsonArray.getJSONObject(i);
+                        sendtoo.add(object.getString("byto"));
+                        date.add(object.getString("date"));
+                        time.add(object.getString("time"));
+                        amount.add(object.getString("money"));
+
+                    }
+                    for (int i = 0; i < sendtoo.size(); i++) {
+                        TransactionsListData ld = new TransactionsListData(sendtoo.get(i), date.get(i), time.get(i), amount.get(i), img.get(i));
+                        listt.add(ld);
+                    }
+                    tracHis.setAdapter(new TransactionsCustomListAdaptor(Home_Activity.this, listt));
+
+
+                } catch (Exception e) {
+                    Toast.makeText(Home_Activity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+
+
+                }
+
+
+            }
+        };
+
+
+        PostResponseAsyncTask task = new PostResponseAsyncTask(Home_Activity.this, map, true, response);
+        task.execute(constants.Api_Location + "");
 
     }
 
