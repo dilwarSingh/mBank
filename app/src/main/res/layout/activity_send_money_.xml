@@ -54,6 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout7">
 
         <EditText
+            android:id="@+id/money"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enter_amount"
@@ -61,7 +62,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/sendMoney"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -69,9 +70,9 @@
         android:layout_marginRight="32dp"
         android:layout_marginTop="32dp"
         android:text="@string/send_money"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/amount"
         app:layout_constraintRight_toRightOf="@+id/amount"
-        app:layout_constraintTop_toBottomOf="@+id/amount"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/amount" />
 
 </android.support.constraint.ConstraintLayout>
