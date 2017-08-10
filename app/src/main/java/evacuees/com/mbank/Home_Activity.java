@@ -23,7 +23,9 @@ import java.util.List;
 import evacuees.com.mbank.Adapters.TransactionsCustomListAdaptor;
 import evacuees.com.mbank.DataSet.constants;
 
+import static evacuees.com.mbank.DataSet.constants.ACCOUNT;
 import static evacuees.com.mbank.DataSet.constants.Api_Location;
+import static evacuees.com.mbank.DataSet.constants.BALANCE;
 
 
 public class Home_Activity extends AppCompatActivity {
@@ -139,12 +141,15 @@ public class Home_Activity extends AppCompatActivity {
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
-                        bal = "Rs. " + (object.getString("account_balance"));
-                        no = "A/C: " + (object.getString("account_no"));
+                        bal = (object.getString("account_balance"));
+                        no = (object.getString("account_no"));
+
+                        BALANCE = bal;
+                        ACCOUNT = no;
                     }
 
-                    AccountNo.setText(no);
-                    AccountBal.setText(bal);
+                    AccountNo.setText("A/C: " + no);
+                    AccountBal.setText("Rs. " + bal);
 
 
                 } catch (Exception e) {

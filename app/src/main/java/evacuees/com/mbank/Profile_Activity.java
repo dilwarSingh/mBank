@@ -168,12 +168,9 @@ public class Profile_Activity extends AppCompatActivity {
                 new DatePickerDialog(Profile_Activity.this, DOB, calendar
                         .get(Calendar.YEAR), calendar.get(Calendar.MONTH),
                         calendar.get(Calendar.DAY_OF_MONTH)).show();
-
-
             }
         });
     }
-
 
     private void selectedgender() {
         gender.setOnClickListener(new View.OnClickListener() {
