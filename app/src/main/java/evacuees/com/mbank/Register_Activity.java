@@ -48,7 +48,6 @@ public class Register_Activity extends AppCompatActivity {
                 long min = 100000000L;
                 long max = 1000000000000L;
                 long account_no = min + ((long) (random.nextDouble() * (max - min)));
-                Log.d("accNo", account_no + "");
 
 
                 if (fn.isEmpty()) {
