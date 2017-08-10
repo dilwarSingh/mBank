@@ -12,8 +12,13 @@ import android.widget.Toast;
 import com.kosalgeek.asynctask.AsyncResponse;
 import com.kosalgeek.asynctask.PostResponseAsyncTask;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.Calendar;
 import java.util.HashMap;
+
+import evacuees.com.mbank.DataSet.constants;
 
 import static evacuees.com.mbank.DataSet.constants.ACCOUNT;
 import static evacuees.com.mbank.DataSet.constants.Api_Location;
@@ -24,8 +29,7 @@ public class sendMoney_Activity extends AppCompatActivity {
 
     EditText ReciverNo, money;
     Button sendMoney;
-
-    String accNo, bal;
+    String reciversAccountBalance;
     TextInputLayout amount;
 
     @Override
@@ -44,45 +48,87 @@ public class sendMoney_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                float Money = Long.parseLong(money.getText().toString());
+                final float Money = Float.parseFloat(money.getText().toString());
 
                 if (Money < Float.parseFloat(BALANCE)) {
                     amount.setError("Insufficient Balance");
                 } else {
-
-                    HashMap<String, String> map = new HashMap<String, String>();
-
-                    map.put("Saccount", ACCOUNT);
-                    map.put("Raccount", ReciverNo.getText().toString());
-                    map.put("mins", (Float.parseFloat(BALANCE) - Money) + "");
-                    map.put("amount", Money + "");
-                    map.put("date", getCurrentDate());
-                    map.put("time", getCurrentTime());
+                    HashMap<String, String> map = new HashMap<>();
+                    map.put("account_no", ReciverNo.getText().toString().trim());
 
 
                     AsyncResponse response = new AsyncResponse() {
                         @Override
                         public void processFinish(String s) {
-
-                            if (s.isEmpty() || s.equals("") || s.equals(null)) {
-                                Toast.makeText(getApplicationContext(), "Please Check Internet Connection ", Toast.LENGTH_LONG).show();
+                            if (s.isEmpty() || s.equals("")) {
+                                Toast.makeText(sendMoney_Activity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
-                                if (s.equals("Successfully Send")) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(s);
+                                    JSONArray jsonArray = jsonObject.getJSONArray("result");
 
-                                    Intent intent = new Intent(sendMoney_Activity.this, Home_Activity.class);
-                                    startActivity(intent);
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        JSONObject object = jsonArray.getJSONObject(i);
+
+                                        reciversAccountBalance = (object.getString("account_balance"));
+
+                                    }
+
+
+                                    sendMoney1(Money);
+
+
+                                } catch (Exception e) {
+                                    Toast.makeText(sendMoney_Activity.this, "Invalid Account No.", Toast.LENGTH_LONG).show();
                                 }
                             }
                         }
                     };
 
-                    PostResponseAsyncTask task = new PostResponseAsyncTask(sendMoney_Activity.this, map, "Sending Money...", response);
-                    task.execute(Api_Location + "sendMoney.php");
+                    PostResponseAsyncTask task = new PostResponseAsyncTask(sendMoney_Activity.this, map, "Checking Profile...", response);
+                    task.execute(constants.Api_Location + "getAccountInfoAccount.php");
+
 
                 }
             }
         });
+    }
+
+    public void sendMoney1(Float Money) {
+        HashMap<String, String> map = new HashMap<String, String>();
+
+        map.put("Saccount", ACCOUNT);
+        map.put("Raccount", ReciverNo.getText().toString());
+        map.put("Saccount", "_" + ACCOUNT);
+        map.put("Raccount", "_" + ReciverNo.getText().toString());
+        map.put("mins", (Float.parseFloat(BALANCE) - Money) + "");
+        map.put("maxs", (Float.parseFloat(reciversAccountBalance) - Money) + "");
+        map.put("amount", Money + "");
+        map.put("date", getCurrentDate());
+        map.put("time", getCurrentTime());
+
+
+        AsyncResponse response = new AsyncResponse() {
+            @Override
+            public void processFinish(String s) {
+
+                if (s.isEmpty() || s.equals("") || s.equals(null)) {
+                    Toast.makeText(getApplicationContext(), "Please Check Internet Connection ", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+                    if (s.equals("Successfully Send")) {
+
+                        Intent intent = new Intent(sendMoney_Activity.this, Home_Activity.class);
+                        startActivity(intent);
+                    }
+                }
+            }
+        };
+
+        PostResponseAsyncTask task = new PostResponseAsyncTask(sendMoney_Activity.this, map, "Sending Money...", response);
+        task.execute(Api_Location + "sendMoney.php");
+
+
     }
 
     public String getCurrentTime() {

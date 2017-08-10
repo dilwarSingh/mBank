@@ -160,8 +160,8 @@ public class Home_Activity extends AppCompatActivity {
                         bal = (object.getString("account_balance"));
                         no = (object.getString("account_no"));
 
-                        BALANCE = bal;
-                        ACCOUNT = no;
+                        constants.BALANCE = bal;
+                        constants.ACCOUNT = no;
                     }
 
                     AccountNo.setText("A/C: " + no);

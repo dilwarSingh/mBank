@@ -3,6 +3,7 @@ package evacuees.com.mbank;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,17 +28,21 @@ public class AddMoney_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_add_money);
         money = (EditText) findViewById(R.id.money);
         add_money = (Button) findViewById(R.id.addmoney);
-        rupees = money.getText().toString();
+
         add_money.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String addrupees = constants.BALANCE + rupees;
+
+                rupees = money.getText().toString();
+
+                String addrupees = "" + (Float.parseFloat(constants.BALANCE) + Float.parseFloat(rupees));
 
                 HashMap<String, String> data = new HashMap<String, String>();
                 data.put("account", constants.ACCOUNT);
+                data.put("underAccount", "_" + constants.ACCOUNT);
                 data.put("account_balance", addrupees);
                 data.put("money", rupees);
-                data.put("date",getCurrentDate());
+                data.put("date", getCurrentDate());
                 data.put("time", getCurrentTime());
 
 
@@ -67,6 +72,7 @@ public class AddMoney_Activity extends AppCompatActivity {
             }
         });
     }
+
     public String getCurrentTime() {
         Calendar calendar = Calendar.getInstance();
 
