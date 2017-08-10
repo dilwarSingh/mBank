@@ -1,5 +1,6 @@
 package evacuees.com.mbank;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -48,6 +49,14 @@ public class Home_Activity extends AppCompatActivity {
             }
         });
 
+        Profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home_Activity.this, Profile_Activity.class);
+                startActivity(intent);
+
+            }
+        });
 
     }
 
