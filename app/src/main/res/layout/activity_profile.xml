@@ -104,53 +104,36 @@
             android:inputType="phone" />
     </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/textInputLayout12"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/textInputLayout10"
-        app:layout_constraintRight_toRightOf="@+id/textInputLayout10"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout10">
-
-        <EditText
-            android:id="@+id/dob"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="8dp"
-            android:layout_weight="1"
-            android:hint="Date Of Birth"
-            android:inputType="date"
-            android:text="DD/MM/YYYY"
-            app:layout_constraintLeft_toLeftOf="@+id/textInputLayout10"
-            app:layout_constraintRight_toRightOf="@+id/textInputLayout10"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout10" />
-    </android.support.design.widget.TextInputLayout>
-
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="6dp"
-        android:layout_marginTop="8dp"
         android:text="Gender"
         android:textSize="12sp"
-        app:layout_constraintLeft_toLeftOf="@+id/textInputLayout12"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout12" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/dob"
+        android:layout_marginLeft="4dp"
+        app:layout_constraintLeft_toLeftOf="@+id/dob" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
+        android:text="Date of Birth"
+        android:textSize="12dp"
+        app:layout_constraintLeft_toLeftOf="@+id/textInputLayout10"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout10" />
 
     <RadioGroup
         android:id="@+id/gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="4dp"
         android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="@+id/textInputLayout12"
-        app:layout_constraintRight_toRightOf="@+id/textInputLayout12"
-        app:layout_constraintTop_toBottomOf="@+id/textView11">
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        tools:layout_editor_absoluteX="99dp">
 
         <RadioButton
             android:id="@+id/male"
@@ -175,5 +158,19 @@
             tools:layout_editor_absoluteY="357dp" />
 
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/dob"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="4dp"
+        android:text="DD/MM/YYYY"
+        android:textSize="18sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/textInputLayout10"
+        app:layout_constraintRight_toRightOf="@+id/textInputLayout10"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </android.support.constraint.ConstraintLayout>
