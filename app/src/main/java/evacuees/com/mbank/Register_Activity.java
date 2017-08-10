@@ -15,12 +15,18 @@ import com.kosalgeek.asynctask.PostResponseAsyncTask;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import evacuees.com.mbank.DataSet.constants;
 
 public class Register_Activity extends AppCompatActivity {
 
+    String emailPattern = "^[a-zA-Z][\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+    String phonePattern = "^[7-9][0-9]{9}$";
 
+    Pattern patternE;
+    Pattern patternPH;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final EditText fullname, email, mobile, password, repasword;
@@ -33,6 +39,8 @@ public class Register_Activity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         repasword = (EditText) findViewById(R.id.rePassword);
         register = (Button) findViewById(R.id.register);
+        patternE = Pattern.compile(emailPattern);
+        patternPH = Pattern.compile(phonePattern);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,15 +56,16 @@ public class Register_Activity extends AppCompatActivity {
                 long max = 1000000000000L;
                 final long account_no = min + ((long) (random.nextDouble() * (max - min)));
 
-
+                Matcher matcherE = patternE.matcher(eml);
+                Matcher matcherPH = patternPH.matcher(m);
                 if (fn.isEmpty()) {
                     fullname.setError("Name can't be empty");
-                } else if (m.isEmpty()) {
-                    mobile.setError("Mobile number can't be empty");
-                } else if (eml.isEmpty()) {
-                    email.setError("Email can't be empty");
-                } else if (pwd.isEmpty()) {
-                    password.setError("Password can't be Empty");
+                } else if ((!matcherPH.find())) {
+                    mobile.setError("Mobile number is not valid");
+                } else if ((!matcherE.find())) {
+                    email.setError("Email is not valid");
+                } else if (pwd.length()<6) {
+                    password.setError("Password can't be less than 6 characters");
                 } else if (!pwd.equals(rpwd)) {
                     repasword.setError("Password didn't match");
                 } else {
