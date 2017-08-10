@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,7 +55,12 @@ public class Register_Activity extends AppCompatActivity {
                     mobile.setError("Mobile number can't be empty");
                 } else if (eml.isEmpty()) {
                     email.setError("Email can't be empty");
-                } else if ((!pwd.isEmpty()) || pwd.equals(rpwd)) {
+                } else if (pwd.isEmpty()) {
+                    password.setError("Password can't be Empty");
+                } else if (!pwd.equals(rpwd)) {
+                    repasword.setError("Password didn't match");
+                } else {
+
                     HashMap<String, String> data = new HashMap<String, String>();
                     data.put("name", fn);
                     data.put("phone", m);
@@ -93,8 +97,8 @@ public class Register_Activity extends AppCompatActivity {
                     PostResponseAsyncTask task = new PostResponseAsyncTask(Register_Activity.this, data, "Registering Please Wait......", asyncResponse);
 
                     task.execute(constants.Api_Location + "register.php");
-                } else {
-                    password.setError("Password didn't match");
+
+
                 }
             }
 
@@ -115,7 +119,8 @@ public class Register_Activity extends AppCompatActivity {
         }, 300);
 
     }
-    public static String getCurrentTime() {
+
+    public String getCurrentTime() {
         Calendar calendar = Calendar.getInstance();
 
         int mm = calendar.get(Calendar.MINUTE);
@@ -132,7 +137,7 @@ public class Register_Activity extends AppCompatActivity {
         return t;
     }
 
-    public static String getCurrentDate() {
+    public String getCurrentDate() {
         Calendar calendar = Calendar.getInstance();
         String m = (calendar.get(Calendar.MONTH) + 1) + "";
         String date = calendar.get(Calendar.DAY_OF_MONTH) + "";
