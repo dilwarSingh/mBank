@@ -3,6 +3,8 @@ package evacuees.com.mbank;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -92,9 +94,9 @@ public class Profile_Activity extends AppCompatActivity {
                 }
             };
 
-            PostResponseAsyncTask task = new PostResponseAsyncTask(Profile_Activity.this, data, "Registering Please Wait......", asyncResponse);
+            PostResponseAsyncTask task = new PostResponseAsyncTask(Profile_Activity.this, data, "Updating Please Wait......", asyncResponse);
 
-            task.execute(constants.Api_Location + "");
+            task.execute(constants.Api_Location + "updateProfile.php");
 
 
         }
@@ -134,7 +136,7 @@ public class Profile_Activity extends AppCompatActivity {
         };
 
         PostResponseAsyncTask task = new PostResponseAsyncTask(Profile_Activity.this, map, "Loading Paper...", response);
-        task.execute(constants.Api_Location + "");
+        task.execute(constants.Api_Location + "getAccountInfo.php");
 
 
     }
@@ -179,5 +181,22 @@ public class Profile_Activity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
+        getMenuInflater().inflate(R.menu.profile_menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.save:
+                updateprofile();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

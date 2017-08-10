@@ -84,8 +84,8 @@ public class Home_Activity extends AppCompatActivity {
                     String no = "00", bal = "00.00";
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
-                        bal = "A/C: " + (object.getString("account_balance"));
-                        no = "Rs. " + (object.getString("account_no"));
+                        bal = "Rs. " + (object.getString("account_balance"));
+                        no =  "A/C: " +(object.getString("account_no"));
                     }
 
                     AccountNo.setText(no);
