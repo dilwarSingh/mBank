@@ -21,36 +21,6 @@ import evacuees.com.mbank.DataSet.constants;
 
 public class Register_Activity extends AppCompatActivity {
 
-    public static String getCurrentTime() {
-        Calendar calendar = Calendar.getInstance();
-
-        int mm = calendar.get(Calendar.MINUTE);
-        int hh = calendar.get(Calendar.HOUR_OF_DAY);
-        String m = mm + "";
-        String h = hh + "";
-        if ((mm < 10)) {
-            m = "0" + mm;
-        }
-        if ((hh < 10)) {
-            h = "0" + hh;
-        }
-        String t = h + ":" + m;
-        return t;
-    }
-
-    public static String getCurrentDate() {
-        Calendar calendar = Calendar.getInstance();
-        String m = (calendar.get(Calendar.MONTH) + 1) + "";
-        String date = calendar.get(Calendar.DAY_OF_MONTH) + "";
-        if (m.length() == 1) {
-            m = "0" + m;
-        }
-        if (date.length() == 1) {
-            date = "0" + date;
-        }
-
-        return (date + "/" + m + "/" + calendar.get(Calendar.YEAR));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,4 +116,35 @@ public class Register_Activity extends AppCompatActivity {
         }, 300);
 
     }
+    public static String getCurrentTime() {
+        Calendar calendar = Calendar.getInstance();
+
+        int mm = calendar.get(Calendar.MINUTE);
+        int hh = calendar.get(Calendar.HOUR_OF_DAY);
+        String m = mm + "";
+        String h = hh + "";
+        if ((mm < 10)) {
+            m = "0" + mm;
+        }
+        if ((hh < 10)) {
+            h = "0" + hh;
+        }
+        String t = h + ":" + m;
+        return t;
+    }
+
+    public static String getCurrentDate() {
+        Calendar calendar = Calendar.getInstance();
+        String m = (calendar.get(Calendar.MONTH) + 1) + "";
+        String date = calendar.get(Calendar.DAY_OF_MONTH) + "";
+        if (m.length() == 1) {
+            m = "0" + m;
+        }
+        if (date.length() == 1) {
+            date = "0" + date;
+        }
+
+        return (date + "/" + m + "/" + calendar.get(Calendar.YEAR));
+    }
+
 }
