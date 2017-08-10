@@ -19,8 +19,7 @@ import java.util.Random;
 import evacuees.com.mbank.DataSet.constants;
 
 public class Register_Activity extends AppCompatActivity {
-    EditText fullname, email, mobile, password, repasword;
-    Button register;
+
     public static String getCurrentTime() {
         Calendar calendar = Calendar.getInstance();
 
@@ -54,7 +53,8 @@ public class Register_Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        final EditText fullname, email, mobile, password, repasword;
+        Button register;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         fullname = (EditText) findViewById(R.id.name);
@@ -82,7 +82,7 @@ public class Register_Activity extends AppCompatActivity {
                 } else if (eml.isEmpty()) {
                     email.setError("Email can't be empty");
                 }
-                else if ((!pwd.isEmpty()) || pwd.equals(rpwd)) {
+                if ((!pwd.isEmpty()) || pwd.equals(rpwd)) {
                     HashMap<String, String> data = new HashMap<String, String>();
                     data.put("name", fn);
                     data.put("phone", m);
