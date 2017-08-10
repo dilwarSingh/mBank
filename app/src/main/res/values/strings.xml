@@ -11,4 +11,6 @@
     <string name="mbank_password">mBank Password</string>
     <string name="login">Login</string>
     <string name="or">OR</string>
+    <string name="add_money">Add Money</string>
+    <string name="account_balance">Account Balance</string>
 </resources>
