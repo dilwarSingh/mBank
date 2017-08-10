@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kosalgeek.asynctask.AsyncResponse;
@@ -43,7 +44,8 @@ public class sendMoney_Activity extends AppCompatActivity {
         money = (EditText) findViewById(R.id.money);
         sendMoney = (Button) findViewById(R.id.sendMoney);
         amount = (TextInputLayout) findViewById(R.id.amount);
-
+        TextView tv = (TextView) findViewById(R.id.bal);
+        tv.setText(constants.BALANCE);
 
         sendMoney.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +77,7 @@ public class sendMoney_Activity extends AppCompatActivity {
 
                                     }
 
-                                    System.out.println("/////////////////////////////"+Money+"9999999999999999999999999999999");
+                                    System.out.println("/////////////////////////////" + Money + "9999999999999999999999999999999");
 
                                     sendMoney1(Money);
 
@@ -100,7 +102,7 @@ public class sendMoney_Activity extends AppCompatActivity {
         HashMap<String, String> map = new HashMap<String, String>();
 
         Log.d("money", Money + "iacb");
-        System.out.println("/////////////////////////////"+Money+"9999999999999999999999999999999");
+        System.out.println("/////////////////////////////" + Money + "9999999999999999999999999999999");
 
         map.put("Saccount", ACCOUNT);
         map.put("Raccount", ReciverNo.getText().toString());
@@ -111,7 +113,7 @@ public class sendMoney_Activity extends AppCompatActivity {
         map.put("Money", Money + "");
         map.put("date", getCurrentDate());
         map.put("time", getCurrentTime());
-        System.out.println("/////////////////////////////"+Money+"9999999999999999999999999999999");
+        System.out.println("/////////////////////////////" + Money + "9999999999999999999999999999999");
 
 
         AsyncResponse response = new AsyncResponse() {

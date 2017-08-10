@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kosalgeek.asynctask.AsyncResponse;
@@ -27,6 +28,9 @@ public class Register_Activity extends AppCompatActivity {
 
     Pattern patternE;
     Pattern patternPH;
+
+    TextView logintoMbank;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final EditText fullname, email, mobile, password, repasword;
@@ -38,9 +42,19 @@ public class Register_Activity extends AppCompatActivity {
         mobile = (EditText) findViewById(R.id.phone);
         password = (EditText) findViewById(R.id.password);
         repasword = (EditText) findViewById(R.id.rePassword);
+        logintoMbank = (TextView) findViewById(R.id.loginMbank);
         register = (Button) findViewById(R.id.register);
         patternE = Pattern.compile(emailPattern);
         patternPH = Pattern.compile(phonePattern);
+
+        logintoMbank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Register_Activity.this, Login_Activity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +78,7 @@ public class Register_Activity extends AppCompatActivity {
                     mobile.setError("Mobile number is not valid");
                 } else if ((!matcherE.find())) {
                     email.setError("Email is not valid");
-                } else if (pwd.length()<6) {
+                } else if (pwd.length() < 6) {
                     password.setError("Password can't be less than 6 characters");
                 } else if (!pwd.equals(rpwd)) {
                     repasword.setError("Password didn't match");
@@ -95,7 +109,6 @@ public class Register_Activity extends AppCompatActivity {
                                 if (s.equals("Successfully registered")) {
 
 
-
                                     fullname.setText("");
                                     mobile.setText("");
                                     password.setText("");
@@ -118,7 +131,6 @@ public class Register_Activity extends AppCompatActivity {
 
         });
     }
-
 
 
     @Override

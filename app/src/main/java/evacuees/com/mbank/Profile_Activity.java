@@ -29,7 +29,7 @@ import static java.util.Locale.US;
 
 public class Profile_Activity extends AppCompatActivity {
     EditText name, phoneno, email;
-    TextView dob;
+    TextView dob, nametv;
     RadioGroup gender;
     RadioButton male, female, selectedradiobutton;
     Calendar calendar = Calendar.getInstance();
@@ -49,6 +49,7 @@ public class Profile_Activity extends AppCompatActivity {
         gender = (RadioGroup) findViewById(R.id.gender);
         male = (RadioButton) findViewById(R.id.male);
         female = (RadioButton) findViewById(R.id.female);
+        nametv = (TextView) findViewById(R.id.nametv);
 
         selectedgender();
         selectdob();
@@ -125,6 +126,7 @@ public class Profile_Activity extends AppCompatActivity {
                             JSONObject object = jsonArray.getJSONObject(i);
 
                             name.setText(object.getString("name"));
+                            nametv.setText(object.getString("name"));
                             phoneno.setText(object.getString("phone"));
                             email.setText(object.getString("email"));
                             dob.setText(object.getString("dob"));

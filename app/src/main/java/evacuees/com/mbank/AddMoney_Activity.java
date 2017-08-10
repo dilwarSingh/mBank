@@ -3,10 +3,10 @@ package evacuees.com.mbank;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kosalgeek.asynctask.AsyncResponse;
@@ -28,6 +28,9 @@ public class AddMoney_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_add_money);
         money = (EditText) findViewById(R.id.money);
         add_money = (Button) findViewById(R.id.addmoney);
+
+        TextView tv = (TextView) findViewById(R.id.bal);
+        tv.setText(constants.BALANCE);
 
         add_money.setOnClickListener(new View.OnClickListener() {
             @Override
