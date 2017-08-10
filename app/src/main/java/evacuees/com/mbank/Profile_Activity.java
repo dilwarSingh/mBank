@@ -117,6 +117,7 @@ EditText name,phoneno,email,dob;
         });
     }
 
+
     private void selectedgender() {
         gender.setOnClickListener(new View.OnClickListener() {
             @Override
