@@ -51,6 +51,50 @@ EditText name,phoneno,email,dob;
     }
 
     private void updateprofile() {
+        String n = name.getText().toString();
+        String m = phoneno.getText().toString();
+        String eml = email.getText().toString();
+
+
+        if (n.isEmpty()) {
+            name.setError("Name can't be empty");
+        } else if (m.isEmpty()) {
+            phoneno.setError("Mobile number can't be empty");
+        } else if (eml.isEmpty()) {
+            email.setError("Email can't be empty");
+        } else {
+
+            HashMap<String, String> data = new HashMap<String, String>();
+            data.put("name", n);
+            data.put("phone", m);
+            data.put("email", eml);
+            data.put("dob", );
+            data.put("gender", );
+
+
+            AsyncResponse asyncResponse = new AsyncResponse() {
+                @Override
+                public void processFinish(String s) {
+
+                    if (s.isEmpty() || s.equals("") || s.equals(null)) {
+                        Toast.makeText(getApplicationContext(), "Please Check Internet Connection ", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+                        if (s.equals("Successfully updated")) {
+
+
+                        }
+
+                    }
+                }
+            };
+
+            PostResponseAsyncTask task = new PostResponseAsyncTask(Profile_Activity.this, data, "Registering Please Wait......", asyncResponse);
+
+            task.execute(constants.Api_Location + "");
+
+
+        }
 
     }
 
@@ -62,7 +106,7 @@ EditText name,phoneno,email,dob;
             @Override
             public void processFinish(String s) {
                 if (s.isEmpty() || s.equals("")) {
-                    Toast.makeText(Profile_Activity.this, "check_internet_connection", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Profile_Activity.this, "Please Check Internet Connection ", Toast.LENGTH_SHORT).show();
                 } else {
                     try {
                         JSONObject jsonObject = new JSONObject(s);
