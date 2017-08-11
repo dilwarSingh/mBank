@@ -23,6 +23,7 @@
         <activity android:name=".Home_Activity" />
         <activity android:name=".Profile_Activity" />
         <activity android:name=".Register_Activity" />
+        <activity android:name=".Transaction_Activity" />
         <activity android:name=".AddMoney_Activity" />
         <activity android:name=".sendMoney_Activity" />
         <activity android:name=".Splash_Activity">
