@@ -89,7 +89,7 @@ public class sendMoney_Activity extends AppCompatActivity {
                         }
                     };
 
-                    PostResponseAsyncTask task = new PostResponseAsyncTask(sendMoney_Activity.this, map, "Checking Profile...", response);
+                    PostResponseAsyncTask task = new PostResponseAsyncTask(sendMoney_Activity.this, map, "Checking account number in database", response);
                     task.execute(constants.Api_Location + "getAccountInfoAccount.php");
 
 
@@ -109,7 +109,7 @@ public class sendMoney_Activity extends AppCompatActivity {
         map.put("USaccount", "_" + ACCOUNT);
         map.put("URaccount", "_" + ReciverNo.getText().toString());
         map.put("mins", (Float.parseFloat(BALANCE) - Money) + "");
-        map.put("maxs", (Float.parseFloat(reciversAccountBalance) - Money) + "");
+        map.put("maxs", (Float.parseFloat(reciversAccountBalance) + Money) + "");
         map.put("Money", Money + "");
         map.put("date", getCurrentDate());
         map.put("time", getCurrentTime());
