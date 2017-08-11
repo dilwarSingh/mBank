@@ -25,6 +25,7 @@ ListView transactionhis;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
+        transactionhis=(ListView)findViewById(R.id.listv);
         final ArrayList<TransactionsListData> listt = new ArrayList<>();
         HashMap<String, String> map = new HashMap<>();
         String tab = "_" + constants.ACCOUNT;
