@@ -125,6 +125,18 @@ public class Home_Activity extends AppCompatActivity {
                 startActivity(i3);
 
                 break;
+            case R.id.sendMoney:
+                Intent i4 = new Intent(Home_Activity.this, sendMoney_Activity.class);
+                i4.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i4);
+
+                break;
+            case R.id.addMoney:
+                Intent i5 = new Intent(Home_Activity.this, AddMoney_Activity.class);
+                i5.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i5);
+
+                break;
         }
 
 

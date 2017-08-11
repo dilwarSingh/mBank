@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/profile"
@@ -15,6 +15,16 @@
     <item
         android:id="@+id/map"
         android:title="Nearby ATMs"
+        android:visible="true"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/sendMoney"
+        android:title="Send Money"
+        android:visible="true"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/addMoney"
+        android:title="Add Money"
         android:visible="true"
         app:showAsAction="never" />
     <item
