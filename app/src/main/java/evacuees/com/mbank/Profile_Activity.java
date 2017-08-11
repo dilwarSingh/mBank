@@ -2,7 +2,9 @@ package evacuees.com.mbank;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +37,7 @@ public class Profile_Activity extends AppCompatActivity {
     Calendar calendar = Calendar.getInstance();
     String gendr = "none";
     String dender = "none";
+    TextInputLayout nameTil, emailTil, phoneTil;
 
 
     @Override
@@ -51,7 +54,13 @@ public class Profile_Activity extends AppCompatActivity {
         female = (RadioButton) findViewById(R.id.female);
         nametv = (TextView) findViewById(R.id.nametv);
 
-        selectedgender();
+        nameTil = (TextInputLayout) findViewById(R.id.nameTil);
+        emailTil = (TextInputLayout) findViewById(R.id.emailTil);
+        phoneTil = (TextInputLayout) findViewById(R.id.phoneTil);
+
+        email.setEnabled(false);
+        phoneno.setEnabled(false);
+
         selectdob();
         showprofile();
 
@@ -63,13 +72,20 @@ public class Profile_Activity extends AppCompatActivity {
         String m = phoneno.getText().toString();
         String eml = email.getText().toString();
 
+        String g = "none";
+
+        if (male.isChecked()) {
+            g = "male";
+        } else if (female.isChecked()) {
+            g = "female";
+        }
 
         if (n.isEmpty()) {
-            name.setError("Name can't be empty");
+            nameTil.setError("Name can't be empty");
         } else if (m.isEmpty()) {
-            phoneno.setError("Mobile number can't be empty");
+            phoneTil.setError("Mobile number can't be empty");
         } else if (eml.isEmpty()) {
-            email.setError("Email can't be empty");
+            emailTil.setError("Email can't be empty");
         } else {
 
             HashMap<String, String> data = new HashMap<String, String>();
@@ -77,7 +93,7 @@ public class Profile_Activity extends AppCompatActivity {
             data.put("phone", m);
             data.put("email", eml);
             data.put("dob", dob.getText().toString());
-            data.put("gender", gendr);
+            data.put("gender", g);
 
 
             AsyncResponse asyncResponse = new AsyncResponse() {
@@ -184,6 +200,7 @@ public class Profile_Activity extends AppCompatActivity {
                     int selectedid = gender.getCheckedRadioButtonId();
                     selectedradiobutton = (RadioButton) findViewById(selectedid);
                     gendr = selectedradiobutton.getText().toString();
+                    Log.d("gender", gendr + "");
                 }
             }
         });
@@ -203,6 +220,7 @@ public class Profile_Activity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.save:
                 updateprofile();
+                showprofile();
                 break;
         }
         return super.onOptionsItemSelected(item);
