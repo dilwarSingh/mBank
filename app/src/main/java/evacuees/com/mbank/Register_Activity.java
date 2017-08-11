@@ -3,6 +3,7 @@ package evacuees.com.mbank;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +23,7 @@ import java.util.regex.Pattern;
 import evacuees.com.mbank.DataSet.constants;
 
 public class Register_Activity extends AppCompatActivity {
-
+TextInputLayout nam,mobi,emal,pswrd,repswrd;
     String emailPattern = "^[a-zA-Z][\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
     String phonePattern = "^[7-9][0-9]{9}$";
 
@@ -44,6 +45,11 @@ public class Register_Activity extends AppCompatActivity {
         repasword = (EditText) findViewById(R.id.rePassword);
         logintoMbank = (TextView) findViewById(R.id.loginMbank);
         register = (Button) findViewById(R.id.register);
+        nam=(TextInputLayout)findViewById(R.id.textInputLayout) ;
+        mobi=(TextInputLayout)findViewById(R.id.textInputLayout2) ;
+       emal=(TextInputLayout)findViewById(R.id.textInputLayout3) ;
+       pswrd=(TextInputLayout)findViewById(R.id.textInputLayout4) ;
+       repswrd=(TextInputLayout)findViewById(R.id.textInputLayout5) ;
         patternE = Pattern.compile(emailPattern);
         patternPH = Pattern.compile(phonePattern);
 
@@ -73,15 +79,15 @@ public class Register_Activity extends AppCompatActivity {
                 Matcher matcherE = patternE.matcher(eml);
                 Matcher matcherPH = patternPH.matcher(m);
                 if (fn.isEmpty()) {
-                    fullname.setError("Name can't be empty");
+                    nam.setError("Name can't be empty");
                 } else if ((!matcherPH.find())) {
-                    mobile.setError("Mobile number is not valid");
+                    mobi.setError("Mobile number is not valid");
                 } else if ((!matcherE.find())) {
-                    email.setError("Email is not valid");
+                    emal.setError("Email is not valid");
                 } else if (pwd.length() < 6) {
-                    password.setError("Password can't be less than 6 characters");
+                    pswrd.setError("Password can't be less than 6 characters");
                 } else if (!pwd.equals(rpwd)) {
-                    repasword.setError("Password didn't match");
+                    repswrd.setError("Password didn't match");
                 } else {
 
                     HashMap<String, String> data = new HashMap<String, String>();
