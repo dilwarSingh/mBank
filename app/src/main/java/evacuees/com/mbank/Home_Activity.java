@@ -55,6 +55,14 @@ public class Home_Activity extends AppCompatActivity {
             }
         });
 
+        MapLoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home_Activity.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         Profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,7 +153,7 @@ public class Home_Activity extends AppCompatActivity {
 
 
                 } catch (Exception e) {
-                    Toast.makeText(Home_Activity.this,   e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(Home_Activity.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
 
                 }

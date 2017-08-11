@@ -16,4 +16,5 @@
     <string name="enter_amount">Enter Amount</string>
     <string name="reciver_s_account_no">Receiver\'s Account No.</string>
     <string name="send_money">Send Money</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
