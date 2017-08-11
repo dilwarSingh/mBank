@@ -6,20 +6,20 @@
         android:id="@+id/profile"
         android:title="Profile"
         android:visible="true"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/transactionhis"
         android:title="Transactions"
         android:visible="true"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/map"
         android:title="Nearby ATMs"
         android:visible="true"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/Logout"
         android:title="Logout"
         android:visible="true"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
 </menu>

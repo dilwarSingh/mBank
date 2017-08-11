@@ -106,6 +106,25 @@ public class Home_Activity extends AppCompatActivity {
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
                 finish();
+                break;
+            case R.id.transactionhis:
+                Intent i1 = new Intent(Home_Activity.this, Transaction_Activity.class);
+                i1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i1);
+                finish();
+                break;
+            case R.id.profile:
+                Intent i2 = new Intent(Home_Activity.this, Profile_Activity.class);
+                i2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i2);
+                finish();
+                break;
+            case R.id.map:
+                Intent i3 = new Intent(Home_Activity.this, MapsActivity.class);
+                i3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i3);
+                finish();
+                break;
         }
 
 

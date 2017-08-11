@@ -22,27 +22,27 @@
 
             <ImageButton
                 android:id="@+id/profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
                 android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@android:color/transparent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_account_circle"
-                android:layout_marginStart="8dp" />
+                app:srcCompat="@drawable/ic_account_circle" />
 
             <ImageButton
                 android:id="@+id/map_loc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@android:color/transparent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_place"
-                android:layout_marginEnd="8dp" />
+                app:srcCompat="@drawable/ic_place" />
 
             <evacuees.com.mbank.customFonts.MyTextView
                 android:id="@+id/account_number"
@@ -96,11 +96,13 @@
             <Button
                 android:id="@+id/addMoney"
                 style="@style/Widget.AppCompat.Button.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="@android:color/background_light"
                 android:text="@string/add_money"
@@ -110,18 +112,18 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/account_balance"
-                app:layout_constraintVertical_bias="1.0"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp" />
+                app:layout_constraintVertical_bias="1.0" />
 
             <Button
                 android:id="@+id/sendMoney"
                 style="@style/Widget.AppCompat.Button.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
                 android:layout_marginBottom="2dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="@android:color/background_light"
                 android:text="Send Money"
@@ -131,9 +133,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/account_balance"
-                app:layout_constraintVertical_bias="1.0"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp" />
+                app:layout_constraintVertical_bias="1.0" />
 
 
         </android.support.constraint.ConstraintLayout>
