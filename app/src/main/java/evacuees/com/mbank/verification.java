@@ -35,6 +35,7 @@ public class verification extends AppCompatActivity {
         otp = genrateOTP();
 
         by = getIntent().getExtras().getString("no");
+        no.setText(by);
         SendOtpByTo(by);
 
         submit.setOnClickListener(new View.OnClickListener() {
