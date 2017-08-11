@@ -41,7 +41,6 @@
             android:layout_height="wrap_content"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
-            android:text="rishabgupta@gmail.com"
             app:passwordToggleEnabled="true" />
     </android.support.design.widget.TextInputLayout>
 
@@ -63,8 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/mbank_password"
-            android:inputType="textPassword"
-            android:text="sachin200" />
+            android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
