@@ -106,14 +106,20 @@ public class Register_Activity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Please Check Internet Connection ", Toast.LENGTH_LONG).show();
                             } else {
                                 Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
-                                if (s.equals("Successfully registered")) {
+                                if (s.equals("successfully registered")) {
 
 
-                                    fullname.setText("");
+                               /*     fullname.setText("");
                                     mobile.setText("");
                                     password.setText("");
                                     repasword.setText("");
-                                    email.setText("");
+                                    email.setText("");*/
+
+                                    Intent intent = new Intent(Register_Activity.this, verification.class);
+                                    intent.putExtra("no", mobile.getText().toString());
+                                    startActivity(intent);
+                                    finish();
+
 
                                 }
 
